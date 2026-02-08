@@ -15,6 +15,7 @@ class AbstractAdapter(ABC):
 
 
 class APIAdapter(AbstractAdapter):
+    """Класс обращения к API ресурсам"""
 
     def __init__(self):
         self.openstreetmap_url = \
@@ -25,6 +26,7 @@ class APIAdapter(AbstractAdapter):
 
 
     def get_coordinates(self, country):
+        """Получения координат воздушного пространства страны"""
         headers_nominatim = {
             'User-Agent': 'test-app/1.0'
         }
@@ -46,7 +48,7 @@ class APIAdapter(AbstractAdapter):
         return geo_coordinates
 
     def get_aeroplanes(self, geo_coordinates: list) -> None:
-
+        """Получения самолетов в координатах воздушного пространства страны"""
         params = {
             'lamin': geo_coordinates[0],
             'lamax': geo_coordinates[1],
@@ -58,20 +60,3 @@ class APIAdapter(AbstractAdapter):
 
         self.aeroplanes = response.json()
 
-
-class Planes:
-
-    def __init__(self, country, callsign, velocity, geo_altitude):
-        self.country = country
-        self.callsign = callsign
-        self.velocity = velocity
-        self.geo_altitude = geo_altitude
-
-
-
-
-
-test = APIAdapter()
-coordinates = test.get_coordinates('Russia')
-test.get_aeroplanes(coordinates)
-print(test.aeroplanes)
