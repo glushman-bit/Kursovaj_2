@@ -1,10 +1,19 @@
-from datetime import datetime, UTC
-from src.APIAdapter import APIAdapter
+from datetime import UTC
+from datetime import datetime
+
 
 class Planes:
     """Класс объекта самолет"""
 
-    def __init__(self, time_position: datetime, country: str, callsign: str, velocity: float | int, geo_altitude: float | int, on_ground: bool):
+    def __init__(
+        self,
+        time_position: datetime,
+        country: str,
+        callsign: str,
+        velocity: float | int,
+        geo_altitude: float | int,
+        on_ground: bool,
+    ):
         self.time_position = self.__validate_time_position(time_position)
         self.country = self.__validate_country(country)
         self.callsign = self.__validate_callsign(callsign)
@@ -13,23 +22,20 @@ class Planes:
         self.on_ground = self.__validate_on_ground(on_ground)
 
     def __str__(self):
-        return f'{self.country} {self.callsign} {self.velocity} {self.geo_altitude} {str(self.on_ground)}'
+        return f"{self.country} {self.callsign} {self.velocity} {self.geo_altitude} {str(self.on_ground)}"
 
-    def __ge__(self, other: 'Planes'):
+    def __ge__(self, other: "Planes"):
         """Сравнение скорости"""
         if not isinstance(other, Planes):
             return NotImplemented
 
-        print(self.velocity, " >= ", other.velocity)
         return self.velocity >= other.velocity
 
-
-    def __le__(self, other: 'Planes'):
+    def __le__(self, other: "Planes"):
         """Сравнение высоты"""
         if not isinstance(other, Planes):
             return NotImplemented
 
-        print(self.geo_altitude, " <= ", other.geo_altitude)
         return self.geo_altitude <= other.geo_altitude
 
     @property
