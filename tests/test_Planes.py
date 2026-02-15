@@ -35,7 +35,7 @@ def test_planes_airborne_and_status(plane_data, plane_grounded):
     assert bool(ground) is False
 
 
-def test_planes_comparison():
+def test_planes_comparison() -> None:
     """Тест на сравнение самолетов"""
     plane1 = Planes(1766166618, "A", "CS1", 200, 3000, False)
     plane2 = Planes(1766166618, "B", "CS2", 150, 4000, False)
@@ -82,7 +82,7 @@ def test_planes_time_from_timestamp(plane_data):
     assert isinstance(dt, datetime)
 
 
-def test_planes_with_other_class():
+def test_planes_with_other_class() -> None:
     """Тест сравнения с параметром другого класса"""
     plane = Planes(1766166618, "A", "CS1", 200, 3000, False)
 

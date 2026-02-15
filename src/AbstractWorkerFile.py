@@ -7,12 +7,12 @@ class AbstractWorkerFile(ABC):
 
     @abstractmethod
     def add_info_plane_in_file(self, object_plane):
-        pass
+        ...
 
     @abstractmethod
-    def read_info_plane_from_file(self):
-        pass
+    def read_info_plane_from_file(self) -> None:
+        ...
 
     @abstractmethod
-    def delete_info_plane_from_file(self):
-        pass
+    def delete_info_plane_from_file(self) -> None:
+        ...

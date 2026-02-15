@@ -7,8 +7,8 @@ class AbstractAdapter(ABC):
 
     @abstractmethod
     def get_coordinates(self, country: str) -> dict:
-        pass
+        ...
 
     @abstractmethod
     def get_aeroplanes(self, country: str) -> None:
-        pass
+        ...

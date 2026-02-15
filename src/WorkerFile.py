@@ -54,7 +54,7 @@ class WorkerFile(AbstractWorkerFile):
         except FileNotFoundError:
             return []
 
-    def delete_info_plane_from_file(self):
+    def delete_info_plane_from_file(self) -> None:
         """Функция удаления файлов из файла (очищает файл)"""
         try:
             with open(self.filename, "w", encoding="UTF-8") as file:
