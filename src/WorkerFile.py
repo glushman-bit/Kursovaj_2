@@ -1,9 +1,12 @@
 import json
 from pathlib import Path
+from typing import Any
+from typing import Dict
+from typing import List
 
 from src.AbstractWorkerFile import AbstractWorkerFile
 from src.Planes import Planes
-from typing import Any, List, Dict
+
 
 class WorkerFile(AbstractWorkerFile):
     """Класс для работы сохранения и добавления данных в файл."""
@@ -48,7 +51,7 @@ class WorkerFile(AbstractWorkerFile):
         try:
             with open(self.filename, "r", encoding="UTF-8") as file:
                 try:
-                    return json.load(file)     # type: ignore
+                    return json.load(file)  # type: ignore
                 except json.JSONDecodeError:
                     return []
 

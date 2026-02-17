@@ -109,4 +109,3 @@ def test_get_aeroplanes_invalid_json(mock_get):
 
     with pytest.raises(ValueError, match="Ответ не JSON"):
         adapter.get_aeroplanes([1, 2, 3, 4])
-

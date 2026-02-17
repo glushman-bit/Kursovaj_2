@@ -1,7 +1,6 @@
 from src.APIAdapter import APIAdapter
-from utils.object_list import get_object_in_list
 from utils.country_name import get_country_name
-
+from utils.object_list import get_object_in_list
 
 print("""
 Программа: Добро пожаловать в программу для работы с трекером самолетов
@@ -34,13 +33,14 @@ if __name__ == "__main__":
         adapter.get_aeroplanes(country_coordinates)
         get_planes = get_object_in_list(adapter.aeroplanes)
 
-        top_planes = sorted(get_planes, key=lambda plane: plane.geo_altitude, reverse=True)[:int(user_input_top)]
+        top_planes = sorted(get_planes, key=lambda plane: plane.geo_altitude, reverse=True)[: int(user_input_top)]
         print(f"Топ {user_input_top} самолетов по высоте.")
 
         for i, plane in enumerate(top_planes, start=1):
             print(
-                f"{i}. {plane.callsign} | Страна: {plane.country} | Высота: {plane.geo_altitude} м | Скорость: {plane.velocity} м/с" )
-
+                f"{i}. {plane.callsign} | Страна: {plane.country} | Высота: {plane.geo_altitude} м | "
+                f"Скорость: {plane.velocity} м/с"
+            )
 
     print(" ")
     print("Вывести ТОП самолетов по скорости? да/нет")
@@ -52,13 +52,14 @@ if __name__ == "__main__":
         adapter.get_aeroplanes(country_coordinates)
         get_planes = get_object_in_list(adapter.aeroplanes)
 
-        top_planes = sorted(get_planes, key=lambda plane: plane.velocity, reverse=True)[:int(user_input_top)]
+        top_planes = sorted(get_planes, key=lambda plane: plane.velocity, reverse=True)[: int(user_input_top)]
         print(f"Топ {user_input_top} самолетов по скорости.")
 
         for i, plane in enumerate(top_planes, start=1):
             print(
-                f"{i}. {plane.callsign} | Страна: {plane.country} | Высота: {plane.geo_altitude} м | Скорость: {plane.velocity} м/с")
-
+                f"{i}. {plane.callsign} | Страна: {plane.country} | Высота: {plane.geo_altitude} м | "
+                f"Скорость: {plane.velocity} м/с"
+            )
 
     print(" ")
     print("Получить самолеты по стране их регистрации? да/нет")
@@ -75,8 +76,9 @@ if __name__ == "__main__":
 
         for i, plane in enumerate(planes_country, start=1):
             print(
-                f"{i}. {plane.callsign} | Страна: {plane.country} | Высота: {plane.geo_altitude} м | Скорость: {plane.velocity} м/с")
-
+                f"{i}. {plane.callsign} | Страна: {plane.country} | Высота: {plane.geo_altitude} м | "
+                f"Скорость: {plane.velocity} м/с"
+            )
 
     print("Программа закончила работу.")
     exit()
