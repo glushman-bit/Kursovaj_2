@@ -2,7 +2,7 @@ from src.Planes import Planes
 from src.APIAdapter import APIAdapter
 
 
-def get_object_in_list(planes_information: dict):
+def get_object_in_list(planes_information: dict) -> list:
     """
     Преобразование данных о самолетах в объекты самолётов класса Planes в воздушном пространстве страны.
     :param planes_information: Словарь, полученный в методе get_aeroplanes из класса APIAdapter.

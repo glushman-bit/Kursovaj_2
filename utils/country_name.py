@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
+from typing import Optional
 
-
-def get_country_name(found_country: str) -> str | None:
+def get_country_name(found_country: str) -> Optional[str]:
     """Функция получения названия страны на английском языке,
     чтение данных из файла Countries.json.
     Возвращает None если страна не найдена."""
@@ -17,7 +17,7 @@ def get_country_name(found_country: str) -> str | None:
 
     for country in data:
         if country['ru'].lower() == found_country_lower:
-            return country['en'].capitalize()
+            return str(country['en'].capitalize())
 
     return None
 

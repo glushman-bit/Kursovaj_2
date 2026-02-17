@@ -59,7 +59,7 @@ def test_planes_comparison() -> None:
         ("geo_altitude", "high", 0.0),
     ],
 )
-def test_planes_validation(attr, value, expected, plane_data):
+def test_planes_validation(attr, value, expected, plane_data) -> None:
     """Тест валидации параметров"""
     data = plane_data.copy()
     data[attr] = value

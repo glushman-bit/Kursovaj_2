@@ -2,19 +2,20 @@ import json
 from pathlib import Path
 
 from src.AbstractWorkerFile import AbstractWorkerFile
-
+from src.Planes import Planes
+from typing import Any, List, Dict
 
 class WorkerFile(AbstractWorkerFile):
     """Класс для работы сохранения и добавления данных в файл."""
 
-    def __init__(self, filename):
+    def __init__(self, filename: str | None = None) -> None:
         if filename is None:
             base_dir = Path(__file__).resolve().parent.parent
             self.filename = base_dir / "data" / "InfoPlane.json"
         else:
             self.filename = Path(filename)
 
-    def add_info_plane_in_file(self, object_plane):
+    def add_info_plane_in_file(self, object_plane: Planes) -> None:
         """Добавление информации о самолете в файл"""
         try:
             with open(self.filename, "w+", encoding="UTF-8") as file:
@@ -42,12 +43,12 @@ class WorkerFile(AbstractWorkerFile):
         except FileNotFoundError:
             return
 
-    def read_info_plane_from_file(self):
+    def read_info_plane_from_file(self) -> List[Dict[str, Any]]:
         """Функция чтения данных из файла"""
         try:
             with open(self.filename, "r", encoding="UTF-8") as file:
                 try:
-                    return json.load(file)
+                    return json.load(file)     # type: ignore
                 except json.JSONDecodeError:
                     return []
 

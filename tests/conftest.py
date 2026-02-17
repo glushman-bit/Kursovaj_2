@@ -66,7 +66,7 @@ def plane_data():
         "country": "Switzerland",
         "callsign": "SWR438A",
         "velocity": 189.7,
-        "geo_altitude": 4282.44,
+        "geo_altitude": 4282,
         "on_ground": False,
     }
 

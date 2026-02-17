@@ -44,9 +44,9 @@ def test_get_coordinates_invalid_json(mock_get):
     mock_get.return_value = mock_response
 
     adapter = APIAdapter()
-    result = adapter.get_coordinates("Canada")
 
-    assert result == "Ответ не JSON"
+    with pytest.raises(ValueError, match="Ответ не JSON"):
+        adapter.get_coordinates("Canada")
 
 
 @patch("src.APIAdapter.requests.get")
@@ -58,9 +58,9 @@ def test_get_coordinates_empty_json(mock_get):
     mock_get.return_value = mock_response
 
     adapter = APIAdapter()
-    result = adapter.get_coordinates("Canada")
 
-    assert result is None
+    with pytest.raises(ValueError, match="Пустой ответ API"):
+        adapter.get_coordinates("Canada")
 
 
 @patch("src.APIAdapter.requests.get")
@@ -78,9 +78,8 @@ def test_get_aeroplanes_correct(mock_get):
 
     coordinates = ["41.6765597", "83.3362128", "-141.0027500", "-52.3237664"]
 
-    result = adapter.get_aeroplanes(coordinates)
+    adapter.get_aeroplanes(coordinates)
 
-    assert result == mock_data
     assert adapter.aeroplanes == mock_data
     mock_get.assert_called_once()
 
@@ -100,14 +99,14 @@ def test_get_aeroplanes_http_error(mock_get):
 
 @patch("src.APIAdapter.requests.get")
 def test_get_aeroplanes_invalid_json(mock_get):
-    """Проверка при неверного ответа"""
+    """Проверка при неверном ответе с сервера"""
     mock_response = Mock()
     mock_response.status_code = 200
     mock_response.json.side_effect = ValueError
     mock_get.return_value = mock_response
 
     adapter = APIAdapter()
-    adapter.opensky_url = "https://opensky.test"
 
-    result = adapter.get_aeroplanes([1, 2, 3, 4])
-    assert result == "Ответ не JSON"
+    with pytest.raises(ValueError, match="Ответ не JSON"):
+        adapter.get_aeroplanes([1, 2, 3, 4])
+

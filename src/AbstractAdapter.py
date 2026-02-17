@@ -1,12 +1,13 @@
 from abc import ABC
 from abc import abstractmethod
+from typing import Any
 
 
 class AbstractAdapter(ABC):
     """Абстрактный класс для класса получения API запросов APIAdapter."""
 
     @abstractmethod
-    def get_coordinates(self, country: str) -> dict:
+    def get_coordinates(self, country: str) -> list:
         ...
 
     @abstractmethod
